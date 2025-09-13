@@ -12,3 +12,15 @@ Arguments:
         -e, --end <station>     Set end station code (default: N-XSG)
         -h, --help              Show this help message
 ```
+Here is example output:
+```
+ROUTE FROM N-SVW TO N-XSG:
+=============
+N-SVP (Venrail N1)
+N-XBB (Venrail N1)
+N-MZS (Gold Line)
+N-IMC (Crimson Line)
+N-KCY (Crimson Line)
+N-XSG (Warped Line)
+Exported routes to "/home/viklo/ts/nguhroutes/gen/routes.json".
+```
