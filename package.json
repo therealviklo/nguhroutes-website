@@ -1,0 +1,28 @@
+{
+  "name": "nguhroutes",
+  "version": "0.0.0",
+  "description": "Route planning for Cenrail & more",
+  "homepage": "https://github.com/therealviklo/nguhroutes#readme",
+  "bugs": {
+    "url": "https://github.com/therealviklo/nguhroutes/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/therealviklo/nguhroutes.git"
+  },
+  "license": "UNLICENSED",
+  "author": "viklo",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "ts-node index.ts"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.3"
+  }
+}
