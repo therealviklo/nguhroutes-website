@@ -1,0 +1,121 @@
+{
+	"Crimson Line": [
+		{
+			"code": "N-ARU"
+		},
+		{
+			"code": "N-MZS"
+		},
+		{
+			"code": "N-IMC"
+		},
+		{
+			"code": "N-KCY"
+		},
+		{
+			"code": "N-LRW"
+		}
+	],
+	"Gold Line": [
+		{
+			"code": "N-NAG"
+		},
+		{
+			"code": "N-MZS"
+		},
+		{
+			"code": "N-XBB"
+		},
+		{
+			"code": "N-PER"
+		},
+		{
+			"code": "N-WJ"
+		},
+		{
+			"code": "N-PE7"
+		},
+		{
+			"code": "N-HLH"
+		},
+		{
+			"code": "N-XBB"
+		},
+		{
+			"code": "N-XSH"
+		},
+		{
+			"code": "N-KZG"
+		},
+		{
+			"code": "N-LRI"
+		},
+		{
+			"code": "N-VLP"
+		}
+	],
+	"Molten Line": [
+		{
+			"code": "N-IMC"
+		},
+		{
+			"code": "N-KZK"
+		},
+		{
+			"code": "N-EKV"
+		},
+		{
+			"code": "N-TAL"
+		},
+		{
+			"code": "N-CBL"
+		}
+	],
+	"Soul Line": [
+		{
+			"code": "N-RAZ"
+		},
+		{
+			"code": "N-WJ"
+		},
+		{
+			"code": "N-CBC"
+		},
+		{
+			"code": "N-ESC"
+		}
+	],
+	"Venrail N1": [
+		{
+			"code": "N-XBB"
+		},
+		{
+			"code": "N-SVP"
+		},
+		{
+			"code": "N-SVW"
+		}
+	],
+	"Warped Line": [
+		{
+			"code": "N-KCY"
+		},
+		{
+			"code": "N-XSG"
+		},
+		{
+			"code": "N-LKL"
+		}
+	],
+	"Wither Line": [
+		{
+			"code": "N-KZG"
+		},
+		{
+			"code": "N-XCC"
+		},
+		{
+			"code": "N-XUU"
+		}
+	]
+}

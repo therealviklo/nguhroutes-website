@@ -3,13 +3,16 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import * as network from './network.ts';
 import './export.ts';
-import { exportRoutes } from './export.ts';
+import * as exp from './export.ts';
 import { exit } from 'process';
+import * as imp from './import.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-let startStation = "N-SVW";
-let endStation = "N-XSG";
+let startStationDefault = "SVW";
+let endStationDefault = "SXG";
+let startStation = startStationDefault;
+let endStation = endStationDefault;
 
 let argit = process.argv.values();
 // Skip the node command
@@ -43,8 +46,8 @@ for (let i: IteratorResult<string, undefined> = argit.next(); !i.done; i = argit
 `Usage: ts-node index.ts [-- [options]]
 
 Arguments:
-	-s, --start <station>   Set start station code (default: N-SVW)
-	-e, --end <station>     Set end station code (default: N-XSG)
+	-s, --start <station>   Set start station code (default: ${startStationDefault})
+	-e, --end <station>     Set end station code (default: ${endStationDefault})
 	-h, --help              Show this help message`
 			);
 			exit();
@@ -58,7 +61,7 @@ Arguments:
 const networkJsonPath = path.join(__dirname, './json/network.json');
 const networkData = JSON.parse(fs.readFileSync(networkJsonPath, 'utf-8'));
 
-const net = network.parse(networkData);
+const net = imp.parse(networkData);
 const routes = network.generateRoutes(net);
 
 console.log(`ROUTE FROM ${startStation} TO ${endStation}:`);
@@ -69,6 +72,6 @@ if (route !== undefined) {
 		console.log(`${stop.code} (${stop.line})`)
 	}
 	const exportPath = path.join(__dirname, "./gen/routes.json");
-	exportRoutes(routes, exportPath);
+	exp.exportRoutes(routes, exportPath);
 	console.log(`Exported routes to "${exportPath}".`)
 }
