@@ -21,7 +21,9 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
-    "typescript": "^5.9.2"
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.37.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.3"
