@@ -1,11 +1,11 @@
 # NguhRoutes
-This is a project for route planning for Cenrail, Leshrail and possibly other rail networks on Nguhcrafts. Currently, it is very basic and mostly a **proof-of-concept**, and **only supports some of Cenrail**. In the future, it could take actual rail line segment length into account, and maybe even the time it takes to switch between tracks at a station.
+This is a project for route planning for Cenrail, Leshrail and possibly other rail networks on Nguhcrafts. Currently, it is very basic and mostly a **proof-of-concept**, and **only supports some of Cenrail**. However, it should now take distances into account when determining routes. It is now available as [a website](https://nguhroutes.viklo.workers.dev/), which loads precalculated routes from a JSON file and lets you query them.
 
 I am not sure whether it is best to have this become something that you use as a website, as something that is just merged into [Annwan's new map project](https://git.annwan.me/software/nguhmap) or as a mod (integrated into the Nguhcraft mod or standalone). I have made it so that it precalculates the optimal route for every possible pair of stations and outputs that as a JSON file so that the JSON file could potentially be used by other projects.
 
-The Cenrail data is from Total Pleb. Currently, the application always calculates all routes, so that's why it seems a bit slow.
+The Cenrail data is from Total Pleb. Currently, the command-line application always calculates all routes, so that's why it seems a bit slow.
 ## How to run
-Currently, this is only usable as a Typescript command-line application. It prints a route and outputs the full list of routes to a JSON file. Here is the usage:
+Currently, this is usable as a Typescript command-line application, as well as [a website](https://nguhroutes.viklo.workers.dev/). The command-line application prints a route and outputs the full list of routes to a JSON file. Here is the usage:
 ```
 Usage: ts-node index.ts [-- [options]]
 
