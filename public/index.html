@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<body>
+	<head>
+		<meta charset="UTF-8">
+		<title>NguhRoutes</title>
+		<script>
+			function testy() {
+				fetch('./gen/json/routes.json')
+					.then(response => response.json())
+					.then(data => console.log(data))
+					.catch(error => console.error('Error loading routes.json:', error));
+			}
+		</script>
+	</head>
+	<body onload="testy()">
+		<h1>NguhRoutes</h1>
+		<p>Todo: everything</p>
+	</body>
+</body>
