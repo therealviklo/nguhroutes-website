@@ -16,7 +16,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "ts-node index.ts",
-    "build": "ts-node generate-routes.ts"
+    "build": "node generate-routes.ts"
   },
   "dependencies": {
     "fs": "^0.0.1-security",
