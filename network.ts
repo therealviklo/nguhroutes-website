@@ -2,6 +2,7 @@
  * The speed that one travels at on rail, expressed in **seconds per block**.
  */
 export const minecartSpeedFactor = 1 / 100;
+export const netherPrefix = "N-";
 
 /**
  * Represents a connection to another station via a line.
@@ -25,14 +26,13 @@ export type Station = {
  */
 export type Network = {
 	stations: Map<string, Station>;
-	stations_nether: Map<string, Station>;
 };
 
 export type Routes = Map<string, Connection[]>;
 
 /**
  * Returns the route string for a route from one station to another.
- * The format for a route is "code\`code", e.g. "N-SVW\`N-XSG", with a
+ * The format for a route is "code\`code", e.g. "N-SVW\`N-SXG", with a
  * backtick separating the two codes.
  * @param from The starting station
  * @param to The end station
@@ -104,35 +104,3 @@ export function generateRoutes(network: Network): Routes {
 	});
 	return routes;
 }
-
-// OLD CODE FOR THE OLD FORMAT
-
-// export function generateRoutes(network: Network): Routes {
-// 	const routes: Routes = new Map();
-// 	network.stations.forEach((startStation, startStationCode) => {
-// 		const queue: Array<[Connection, Connection[]]> = [];
-// 		for (const connection of startStation.connections) {
-// 			queue.push([connection, []]);
-// 		}
-// 		while (queue.length > 0) {
-// 			const [conn, route] = queue.shift()!;
-// 			if (startStationCode === conn.code) {
-// 				continue;
-// 			}
-// 			const key: string = `${startStationCode}\`${conn.code}`;
-// 			if (routes.has(key)) {
-// 				continue;
-// 			}
-// 			const newRoute = [...route, { ...conn }];
-// 			const currentStation = network.stations.get(conn.code);
-// 			if (!currentStation) {
-// 				throw new Error("Station that is supposed to exist does not exist");
-// 			}
-// 			for (const nextConnection of currentStation.connections) {
-// 				queue.push([nextConnection, newRoute]);
-// 			}
-// 			routes.set(key, newRoute);
-// 		}
-// 	});
-// 	return routes;
-// }

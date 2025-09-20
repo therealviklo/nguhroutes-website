@@ -4,10 +4,11 @@ import { fileURLToPath } from 'url';
 import * as network from './network.ts';
 import * as imp from './import.ts';
 import * as exp from './export.ts';
+import { parse } from 'jsonc-parser';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const networkJsonPath = path.join(__dirname, './json/network.json');
-const networkData = JSON.parse(fs.readFileSync(networkJsonPath, 'utf-8'));
+const networkJsonPath = path.join(__dirname, './json/network.jsonc');
+const networkData = parse(fs.readFileSync(networkJsonPath, 'utf-8'));
 
 const net = imp.parse(networkData);
 const routes = network.generateRoutes(net);
