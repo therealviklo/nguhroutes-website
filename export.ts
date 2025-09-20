@@ -8,7 +8,7 @@ function generateRoutesJSON(routes: network.Routes): string {
 	});
 	let obj = {
 		format_version: "0.2",
-		date: new Date().toISOString().split("T")[0],
+		date: new Date().toISOString(),
 		routes: objRoutes
 	};
 	return JSON.stringify(obj);
