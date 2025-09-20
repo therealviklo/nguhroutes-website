@@ -5,21 +5,43 @@
 		<title>NguhRoutes</title>
 		<script>
 			let routes = null;
+			let routesData = {};
+
+			function loadRoutes(path, name) {
+				if (!routesData[name]) {
+					loading.hidden = false;
+					searcher.hidden = true;
+					fetch(path)
+						.then(response => response.json())
+						.then(data => {
+							routesData[name] = data;
+							routes = routesData[name];
+							const loading = document.getElementById("loading");
+							const searcher = document.getElementById("searcher");
+							loading.hidden = true;
+							searcher.hidden = false;
+						})
+						.catch(error => {
+							console.error('Error loading routes JSON:', error);
+							document.getElementById("loading-text").innerText = "An error occured while loading.";
+						});
+				} else {
+					routes = routesData[name];
+				}
+			}
+
+			function setRoutes(noNether) {
+				routes = null;
+				document.getElementById("route").innerText = "";
+				if (noNether) {
+					loadRoutes("./gen/json/routes_no_nether.json", "noNether");
+				} else {
+					loadRoutes("./gen/json/routes.json", "standard");
+				}
+			}
 
 			function startup() {
-				fetch('./gen/json/routes.json')
-					.then(response => response.json())
-					.then(data => {
-						routes = data;
-						const loading = document.getElementById("loading");
-						const searcher = document.getElementById("searcher");
-						loading.hidden = true;
-						searcher.hidden = false;
-					})
-					.catch(error => {
-						console.error('Error loading routes.json:', error);
-						document.getElementById("loading-text").innerText = "An error occured while loading.";
-					});
+				setRoutes(false);
 			}
 
 			function findRoute() {
@@ -69,6 +91,10 @@
 			and probably a bit outdated. See the <a href="https://github.com/therealviklo/nguhroutes">Github page</a>
 			for more information.
 		</p>
+		<div>
+			<label for="no-nether-checkbox">No Nether</label>
+			<input type="checkbox" id="no-nether-checkbox" name="no-nether-checkbox" onchange="setRoutes(this.checked)">
+		</div>
 		<div id="loading"><p id="loading-text">Loading...</p></div>
 		<div id="searcher" hidden>
 			<label for="start-station">Start Station:</label>

@@ -4,9 +4,10 @@ import * as network from './network.ts';
 /**
  * Parses JSON into a Network.
  * @param networkData The JSON data to be parsed
+ * @param noNether If Nether transfers will be disabled or not
  * @returns A network constructed from that data
  */
-export function parse(networkData: any): network.Network {
+export function parse(networkData: any, noNether: boolean): network.Network {
 	const baseObj: Record<string, any> = networkData;
 	check(baseObj, "object", "Network is not an object");
 	checkProp(baseObj, "lines", "Network does not have a \"lines\" property");
@@ -23,10 +24,12 @@ export function parse(networkData: any): network.Network {
 		checkArr(nether, "\"nether\" is not an array");
 		parseDimension(nether, stations, network.netherPrefix);
 	}
-	const connections = baseObj["connections"];
-	if (connections) {
-		checkArr(connections, "\"connections\" must be an array");
-		addDimensionalConnections(connections, stations);
+	if (!noNether) {
+		const connections = baseObj["connections"];
+		if (connections) {
+			checkArr(connections, "\"connections\" must be an array");
+			addDimensionalConnections(connections, stations);
+		}
 	}
 	return { stations };
 }
