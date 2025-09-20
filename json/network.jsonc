@@ -134,7 +134,7 @@
 				]
 			},
 			{
-				"name": "Central line",
+				"name": "Central Line",
 				"stops": [
 					{
 						"code": "NNN",
@@ -1455,6 +1455,51 @@
 						"date": "2025-09-19T21:46:45.281970965Z"
 					}
 					// Stops after this, and I suspect that it is simply unfinished (2025-09-19)
+				]
+			},
+			{
+				"name": "Ŋerlin Line",
+				"stops": [
+					{
+						"code": "LRI",
+						"coords": [-1989, 58, 4578],
+						"date": "2025-09-20T10:46:12.615949291Z"
+					},
+					{
+						"code": "TPS",
+						"coords": [-2027, 65, 3613],
+						"dist": 1035,
+						"time": 12.4,
+						"date": "2025-09-20T10:46:12.615949291Z"
+					},
+					{
+						"code": "RPA",
+						"coords": [-2027, 25, 1983],
+						"dist": 1630,
+						"time": 19.5,
+						"date": "2025-09-20T10:46:50.720353336Z"
+					},
+					{
+						"code": "RPN",
+						"coords": [-1419, 40, 2163],
+						"dist": 842,
+						"time": 12.4,
+						"date": "2025-09-20T10:47:23.831519249Z"
+					},
+					{
+						"code": "RPK",
+						"coords": [-850, 48, 1889],
+						"dist": 847,
+						"time": 10.9,
+						"date": "2025-09-20T10:47:50.029355825Z"
+					},
+					{
+						"code": "RPC",
+						"coords": [-250, 48, 1696],
+						"dist": 795,
+						"time": 12.1,
+						"date": "2025-09-20T10:48:12.297443554Z"
+					}
 				]
 			},
 			{
