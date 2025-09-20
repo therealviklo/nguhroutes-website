@@ -23,7 +23,7 @@ export function parse(networkData: any): network.Network {
 		checkArr(nether, "\"nether\" is not an array");
 		parseDimension(nether, stations, network.netherPrefix);
 	}
-	const connections = lines["connections"];
+	const connections = baseObj["connections"];
 	if (connections) {
 		checkArr(connections, "\"connections\" must be an array");
 		addDimensionalConnections(connections, stations);
@@ -143,7 +143,7 @@ function addStation(stations: Map<string, network.Station>, code: string) {
  * @param stations The stations map to add to
  */
 function addDimensionalConnections(connections: any[], stations: Map<string, network.Station>) {
-	for (const conn in connections) {
+	for (const conn of connections) {
 		const addDimConn = (overworldCode: string, netherCode: string) => {
 			addStation(stations, overworldCode);
 			addStation(stations, netherCode);
