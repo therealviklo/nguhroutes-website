@@ -2504,7 +2504,7 @@
 						"date": "2025-09-20T11:24:56.767919875Z"
 					},
 					{
-						"code": "XBB",
+						"code": "SVB",
 						"coords": [-377, 127, -9],
 						"dist": 368,
 						"time": 6.9,
@@ -2539,7 +2539,7 @@
 						"date": "2025-09-20T11:28:20.965226328Z"
 					},
 					{
-						"code": "XBB",
+						"code": "SVB",
 						"coords": [-377, 127, -3],
 						"dist": 245,
 						"time": 4.7,
@@ -2678,7 +2678,7 @@
 						"date": "2025-09-20T11:16:16.270060255Z"
 					},
 					{
-						"code": "XBB", // Maybe the code will be changed to N-SVB
+						"code": "SVB", // Maybe the code will be changed to N-SVB
 						"coords": [-393, 127, 0],
 						"dist": 815,
 						"time": 9.9,
@@ -2749,5 +2749,31 @@
 				]
 			}
 		]
-	}
+	},
+	// Connections between overworld stations and nether stations
+	// Format is [overworld, nether], without the N- prefix
+	// or just a string if the code is the same for both
+	"connections": [
+		"SVW",
+		"SVP",
+		"MZS",
+		["PET", "KIL"],
+		["PE7", "VDF"],
+		"HLH",
+		"XSH",
+		"KZG",
+		"LRI",
+		"SQV",
+		"HLM",
+		"XCC",
+		"CBC",
+		["RAU", "RAZ"],
+		"TAL",
+		["EKH", "EKA"],
+		"KZK",
+		"IMP",
+		"KCY",
+		"LRT",
+		"SXG"
+	]
 }
