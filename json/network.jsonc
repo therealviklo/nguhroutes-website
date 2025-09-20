@@ -891,7 +891,7 @@
 				"stops": [
 					// Kaōranga (AKK) is not actually accessible on this line; it just turns you around
 					{
-						"code": "SVS",
+						"code": "SVW",
 						"coords": [-6390, 26, 4973],
 						"date": "2025-09-17T16:30:18.890251051Z"
 					},
