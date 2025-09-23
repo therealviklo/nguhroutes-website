@@ -16,6 +16,7 @@ function loadRoutes(path: string, name: string) {
 				routes = routesData[name];
 				loading.hidden = true;
 				searcher.hidden = false;
+				findRoute();
 			})
 			.catch(error => {
 				console.error('Error loading routes JSON:', error);
@@ -23,6 +24,7 @@ function loadRoutes(path: string, name: string) {
 			});
 	} else {
 		routes = routesData[name];
+		findRoute();
 	}
 }
 
@@ -44,12 +46,12 @@ export function findRoute() {
 	const output = getEl("route");
 	const startStation = (getEl("start-station") as HTMLInputElement).value.trim().toUpperCase();
 	if (!startStation) {
-		output.innerText = "Please enter a start station";
+		// output.innerText = "Please enter a start station";
 		return;
 	}
 	const endStation = (getEl("end-station") as HTMLInputElement).value.trim().toUpperCase();
 	if (!endStation) {
-		output.innerText = "Please enter an end station";
+		// output.innerText = "Please enter an end station";
 		return;
 	}
 	const route = routes["routes"][`${startStation}\`${endStation}`];

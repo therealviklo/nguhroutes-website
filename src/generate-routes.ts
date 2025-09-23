@@ -15,7 +15,6 @@ console.log("Finished loading network data");
 console.log("Parsing network data...");
 const net = imp.parse(networkData, false);
 console.log("Finished parsing network data");
-
 console.log("Generating routes...");
 const startGen = Date.now();
 const routes = network.generateRoutes(net);
@@ -28,9 +27,12 @@ fs.mkdirSync(path.dirname(exportPath), { recursive: true });
 exp.exportRoutes(routes, exportPath);
 console.log("Finished exporting routes");
 
+console.log("Parsing network data (no Nether)...");
+const netNN = imp.parse(networkData, true);
+console.log("Finished parsing network data (no Nether)");
 console.log("Generating routes (no Nether)...");
 const startGenNN = Date.now();
-const routesNN = network.generateRoutes(net);
+const routesNN = network.generateRoutes(netNN);
 const endGenNN = Date.now();
 const genTimeSecNN = ((endGenNN - startGenNN) / 1000).toFixed(2);
 console.log(`Finished generating routes (no Nether) (took ${genTimeSecNN} seconds)`);
