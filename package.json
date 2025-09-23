@@ -13,20 +13,24 @@
   "license": "UNLICENSED",
   "author": "viklo",
   "type": "module",
-  "main": "index.ts",
   "scripts": {
-    "test": "ts-node index.ts",
-    "build": "npx tsx generate-routes.ts"
+    "build": "npx tsx src/generate-routes.ts && npx parcel build src/index.html --dist-dir public",
+    "start": "npx tsx src/generate-routes.ts && npx parcel src/index.html --dist-dir public"
   },
   "dependencies": {
     "fs": "^0.0.1-security",
     "jsonc-parser": "^3.3.1",
     "path": "^0.12.7",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "wrangler": "^4.37.0"
   },
   "devDependencies": {
-    "@types/node": "^24.3.3"
+    "@types/node": "^24.3.3",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "parcel": "^2.16.0"
   }
 }
