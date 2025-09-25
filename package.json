@@ -14,8 +14,8 @@
   "author": "viklo",
   "type": "module",
   "scripts": {
-    "build": "npx tsx src/generate-routes.ts && npx parcel build src/index.html --dist-dir public",
-    "start": "npx tsx src/generate-routes.ts && npx parcel src/index.html --dist-dir public"
+    "build": "npx tsx src/generate-json.ts && npx parcel build src/index.html --dist-dir public",
+    "start": "npx tsx src/generate-json.ts && npx parcel src/index.html --dist-dir public"
   },
   "dependencies": {
     "fs": "^0.0.1-security",

@@ -32,9 +32,9 @@ export function setRoutes(noNether: boolean) {
 	routes = null;
 	getEl("route").innerText = "";
 	if (noNether) {
-		loadRoutes("./gen/json/routes_no_nether.json", "noNether");
+		loadRoutes("./json/routes_no_nether.json", "noNether");
 	} else {
-		loadRoutes("./gen/json/routes.json", "standard");
+		loadRoutes("./json/routes.json", "standard");
 	}
 }
 
