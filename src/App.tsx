@@ -11,7 +11,7 @@ function Navbar() {
 	return (
 		<nav className="navbar">
 			<h1 className="logo-title">NguhRoutes</h1>
-			<NavLink href="https://github.com/therealviklo/nguhroutes/blob/main/src/json/network.jsonc">Network data</NavLink>
+			<NavLink href="https://github.com/therealviklo/nguhroutes-website/blob/main/src/json/network.jsonc">Network data</NavLink>
 			<NavLink href="./json/routes.json">Route data</NavLink>
 			<NavLink href="./json/routes_no_nether.json">Route data (no Nether)</NavLink>
 		</nav>
