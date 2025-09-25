@@ -14,7 +14,7 @@ const networkData = parse(fs.readFileSync(networkJsonPath, 'utf-8'));
 console.log("Finished loading network data");
 
 const jsonOutputDir = path.join(__dirname, "../public/json/");
-const generateRoutes = (ver: string, noNether: boolean) => {
+const generateRoutes = (ver: string, filename: string, noNether: boolean) => {
 	console.log(`GENERATING ${ver.toUpperCase()} ROUTES`);
 	console.log(`Parsing network data... (${ver})`);
 	const net = imp.parse(networkData, noNether);
@@ -26,14 +26,14 @@ const generateRoutes = (ver: string, noNether: boolean) => {
 	const genTimeSec = ((endGen - startGen) / 1000).toFixed(2);
 	console.log(`Finished generating routes (${ver}) (took ${genTimeSec} seconds)`);
 	console.log(`Exporting routes... (${ver})`);
-	const exportPath = path.join(jsonOutputDir, "routes.json");
+	const exportPath = path.join(jsonOutputDir, filename);
 	fs.mkdirSync(path.dirname(exportPath), { recursive: true });
 	exp.exportRoutes(routes, exportPath);
 	console.log(`Finished exporting routes (${ver})`);
 };
 
-generateRoutes("standard", false);
-generateRoutes("no Nether", true);
+generateRoutes("standard", "routes.json", false);
+generateRoutes("no Nether", "routes_no_nether.json", true);
 
 console.log("COPYING NETWORK FILE");
 fs.writeFileSync(path.join(jsonOutputDir, "network.json"), JSON.stringify(networkData));
