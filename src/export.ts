@@ -27,7 +27,8 @@ function makeRoute(routeData: [number, network.Connection[]]): any[] {
 			route.push(conn.code);
 		}
 	}
-	return [time, route];
+	// Annoyingly, my language server does not have this function, but Node.js does
+	return [JSON.rawJSON(time.toFixed(1)), route];
 }
 
 export function exportRoutes(routes: network.Routes, network_version: string, exportPath: string) {
