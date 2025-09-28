@@ -59,9 +59,10 @@ export function findRoute() {
 		output.innerText = `Could not find a route between "${startStation}" and "${endStation}"`;
 		return;
 	}
+	const [, stops] = route;
 	let routeStr = `${startStation} (Start)`;
 	let line = "Unknown line";
-	for (const stop of route) {
+	for (const stop of stops) {
 		let code;
 		if (Array.isArray(stop)) {
 			code = stop[0];
