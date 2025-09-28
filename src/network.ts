@@ -28,7 +28,7 @@ export type Network = {
 	stations: Map<string, Station>;
 };
 
-export type Routes = Map<string, Connection[]>;
+export type Routes = Map<string, [number, Connection[]]>;
 
 /**
  * Returns the route string for a route from one station to another.
@@ -84,9 +84,7 @@ export function generateRoutes(network: Network): Routes {
 	network.stations.forEach((_, startStationCode) => {
 		network.stations.forEach((_, endStationCode) => {
 			const route = routeStr(startStationCode, endStationCode);
-			if (prev.get(route) === null) {
-				routes.set(route, []);
-			} else {
+			if (prev.get(route) !== null) {
 				let currEndCode = endStationCode;
 				let path = [];
 				while (startStationCode != currEndCode) {
@@ -98,7 +96,7 @@ export function generateRoutes(network: Network): Routes {
 					currEndCode = newEndCode;
 					path.unshift(conn);
 				}
-				routes.set(route, path);
+				routes.set(route, [path.reduce((sum, i) => sum + i.cost, 0), path]);
 			}
 		});
 	});

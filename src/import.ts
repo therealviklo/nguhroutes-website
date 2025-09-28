@@ -5,11 +5,14 @@ import * as network from './network.ts';
  * Parses JSON into a Network.
  * @param networkData The JSON data to be parsed
  * @param noNether If Nether transfers will be disabled or not
- * @returns A network constructed from that data
+ * @returns A network constructed from that data, and the version number for the network
  */
-export function parse(networkData: any, noNether: boolean): network.Network {
+export function parse(networkData: any, noNether: boolean): [network.Network, string] {
 	const baseObj: Record<string, any> = networkData;
 	check(baseObj, "object", "Network is not an object");
+	checkProp(baseObj, "version", "Network does not have a version number");
+	const version: string = baseObj["version"];
+	check(version, "string", "Version is not a string");
 	checkProp(baseObj, "lines", "Network does not have a \"lines\" property");
 	const lines: Record<string, any> = baseObj["lines"];
 	check(lines, "object", "\"lines\" is not an object");
@@ -19,7 +22,7 @@ export function parse(networkData: any, noNether: boolean): network.Network {
 		checkArr(overworld, "\"overworld\" is not an array");
 		parseDimension(overworld, stations, "");
 	}
-	const nether: any[] | undefined = lines["nether"];
+	const nether: any[] | undefined = lines["the_nether"];
 	if (nether) {
 		checkArr(nether, "\"nether\" is not an array");
 		parseDimension(nether, stations, network.netherPrefix);
@@ -31,7 +34,7 @@ export function parse(networkData: any, noNether: boolean): network.Network {
 			addDimensionalConnections(connections, stations);
 		}
 	}
-	return { stations };
+	return [{ stations }, version];
 }
 
 /**

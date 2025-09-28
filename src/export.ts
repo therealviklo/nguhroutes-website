@@ -1,20 +1,22 @@
 import * as fs from 'fs';
 import * as network from './network.ts';
 
-function generateRoutesJSON(routes: network.Routes): string {
+function generateRoutesJSON(routes: network.Routes, network_version: string): string {
 	let objRoutes: { [route: string]: network.Connection[] } = {};
-	routes.forEach((conns, route) => {
-		objRoutes[route] = makeRoute(conns);
+	routes.forEach((routeData, route) => {
+		objRoutes[route] = makeRoute(routeData);
 	});
 	let obj = {
-		format_version: "0.2",
+		version: network_version,
+		format_version: "0.3",
 		date: new Date().toISOString(),
 		routes: objRoutes
 	};
 	return JSON.stringify(obj);
 }
 
-function makeRoute(conns: network.Connection[]): any[] {
+function makeRoute(routeData: [number, network.Connection[]]): any[] {
+	let [time, conns] = routeData
 	let route: any[] = [];
 	let lastLine: string | null = null;
 	for (const conn of conns) {
@@ -25,9 +27,9 @@ function makeRoute(conns: network.Connection[]): any[] {
 			route.push(conn.code);
 		}
 	}
-	return route;
+	return [time, route];
 }
 
-export function exportRoutes(routes: network.Routes, exportPath: string) {
-	fs.writeFileSync(exportPath, generateRoutesJSON(routes), 'utf-8');
+export function exportRoutes(routes: network.Routes, network_version: string, exportPath: string) {
+	fs.writeFileSync(exportPath, generateRoutesJSON(routes, network_version), 'utf-8');
 }

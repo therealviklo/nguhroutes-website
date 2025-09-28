@@ -61,17 +61,22 @@ Arguments:
 const networkJsonPath = path.join(__dirname, './json/network.json');
 const networkData = JSON.parse(fs.readFileSync(networkJsonPath, 'utf-8'));
 
-const net = imp.parse(networkData, false);
+const [net, networkVersion] = imp.parse(networkData, false);
 const routes = network.generateRoutes(net);
 
+const routeInfo = routes.get(`${startStation}\`${endStation}`);
+if (!routeInfo) {
+	console.log(`Unable to find route from ${startStation} to ${endStation}`);
+	exit();
+}
 console.log(`ROUTE FROM ${startStation} TO ${endStation}:`);
 console.log("=============");
-const route = routes.get(`${startStation}\`${endStation}`);
+const [, route] = routeInfo;
 if (route !== undefined) {
 	for (const stop of route) {
 		console.log(`${stop.code} (${stop.line})`)
 	}
 	const exportPath = path.join(__dirname, "./gen/routes.json");
-	exp.exportRoutes(routes, exportPath);
+	exp.exportRoutes(routes, networkVersion, exportPath);
 	console.log(`Exported routes to "${exportPath}".`)
 }

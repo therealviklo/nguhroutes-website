@@ -17,7 +17,7 @@ const jsonOutputDir = path.join(__dirname, "../public/json/");
 const generateRoutes = (ver: string, filename: string, noNether: boolean) => {
 	console.log(`GENERATING ${ver.toUpperCase()} ROUTES`);
 	console.log(`Parsing network data... (${ver})`);
-	const net = imp.parse(networkData, noNether);
+	const [net, networkVersion] = imp.parse(networkData, noNether);
 	console.log(`Finished parsing network data (${ver})`);
 	console.log(`Generating routes... (${ver})`);
 	const startGen = Date.now();
@@ -28,7 +28,7 @@ const generateRoutes = (ver: string, filename: string, noNether: boolean) => {
 	console.log(`Exporting routes... (${ver})`);
 	const exportPath = path.join(jsonOutputDir, filename);
 	fs.mkdirSync(path.dirname(exportPath), { recursive: true });
-	exp.exportRoutes(routes, exportPath);
+	exp.exportRoutes(routes, networkVersion, exportPath);
 	console.log(`Finished exporting routes (${ver})`);
 };
 

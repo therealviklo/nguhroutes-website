@@ -1,7 +1,7 @@
 {
-	"format": "0.3",
-	"version": "0.3",
-	"date": "2025-09-20",
+	"format": "0.4",
+	"version": "0.4",
+	"date": "2025-09-28",
 	"lines": {
 		"overworld": [
 			{
@@ -2442,7 +2442,7 @@
 				]
 			}
 		],
-		"nether": [ // I have skipped the N- prefix and left it implied
+		"the_nether": [ // I have skipped the N- prefix and left it implied
 			{
 				"name": "Crimson Line",
 				"stops": [
