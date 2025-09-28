@@ -20,12 +20,17 @@ export type Station = {
 	connections: Connection[]
 };
 
+export type Line = {
+	name: String
+};
+
 /**
  * Represents a network of stations with the connections that
  * those stations have stored for each station.
  */
 export type Network = {
 	stations: Map<string, Station>;
+	lines: Map<String, Line>;
 };
 
 export type Routes = Map<string, [number, Connection[]]>;

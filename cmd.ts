@@ -61,7 +61,7 @@ Arguments:
 const networkJsonPath = path.join(__dirname, './json/network.json');
 const networkData = JSON.parse(fs.readFileSync(networkJsonPath, 'utf-8'));
 
-const [net, networkVersion] = imp.parse(networkData, false);
+const [net, networkVersion] = imp.parseNetwork(networkData, false);
 const routes = network.generateRoutes(net);
 
 const routeInfo = routes.get(`${startStation}\`${endStation}`);

@@ -17,7 +17,7 @@ const jsonOutputDir = path.join(__dirname, "../public/json/");
 const generateRoutes = (ver: string, filename: string, noNether: boolean) => {
 	console.log(`GENERATING ${ver.toUpperCase()} ROUTES`);
 	console.log(`Parsing network data... (${ver})`);
-	const [net, networkVersion] = imp.parse(networkData, noNether);
+	const [net, networkVersion] = imp.parseNetwork(networkData, noNether);
 	console.log(`Finished parsing network data (${ver})`);
 	console.log(`Generating routes... (${ver})`);
 	const startGen = Date.now();

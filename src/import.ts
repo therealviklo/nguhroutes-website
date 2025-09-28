@@ -7,7 +7,7 @@ import * as network from './network.ts';
  * @param noNether If Nether transfers will be disabled or not
  * @returns A network constructed from that data, and the version number for the network
  */
-export function parse(networkData: any, noNether: boolean): [network.Network, string] {
+export function parseNetwork(networkData: any, noNether: boolean): [network.Network, string] {
 	const baseObj: Record<string, any> = networkData;
 	check(baseObj, "object", "Network is not an object");
 	checkProp(baseObj, "version", "Network does not have a version number");
@@ -18,14 +18,15 @@ export function parse(networkData: any, noNether: boolean): [network.Network, st
 	check(lines, "object", "\"lines\" is not an object");
 	const overworld: any[] | undefined = lines["overworld"];
 	const stations = new Map();
+	const linesMap = new Map();
 	if (overworld) {
 		checkArr(overworld, "\"overworld\" is not an array");
-		parseDimension(overworld, stations, "");
+		parseDimension(overworld, stations, linesMap, "");
 	}
 	const nether: any[] | undefined = lines["the_nether"];
 	if (nether) {
 		checkArr(nether, "\"nether\" is not an array");
-		parseDimension(nether, stations, network.netherPrefix);
+		parseDimension(nether, stations, linesMap, network.netherPrefix);
 	}
 	if (!noNether) {
 		const connections = baseObj["connections"];
@@ -34,7 +35,7 @@ export function parse(networkData: any, noNether: boolean): [network.Network, st
 			addDimensionalConnections(connections, stations);
 		}
 	}
-	return [{ stations }, version];
+	return [{ stations, lines: linesMap }, version];
 }
 
 /**
@@ -42,21 +43,27 @@ export function parse(networkData: any, noNether: boolean): [network.Network, st
  * for that dimension.
  * @param dimension The dimension JSON to parse
  * @param stations The stations map to put stations into
+ * @param lines The lines map to put lines into
  * @param prefix The prefix that is added to station codes, e.g. N- for the Nether
  */
-function parseDimension(dimension: any[], stations: Map<string, network.Station>, prefix: string) {
+function parseDimension(dimension: any[], stations: Map<string, network.Station>, lines: Map<string, network.Line>, prefix: string) {
 	for (const line of dimension) {
 		check(line, "object", "A line is not an object");
+		checkProp(line, "stops", "A line has no code");
+		const lineCode = line["code"];
+		check(lineCode, "string", "A line has a code that is not a string");
 		const name = line["name"] ?? "Unnamed Line";
 		check(name, "string", "A name for a line is not a string");
-		checkProp(line, "stops", `Line "${name}" has no "stops" array`);
+		checkProp(line, "stops", `Line ${lineCode} (${name}) has no "stops" array`);
 		const stops = line["stops"];
-		checkArr(stops, `The "stops" property for line "${name}" is not an array`);
+		checkArr(stops, `The "stops" property for line ${lineCode} (${name}) is not an array`);
+
+		lines.set(lineCode, { name });
 
 		const getCode = (stop: Record<string, any>): string => {
-			checkProp(stop, "code", `A stop in line "${line}" does not have a code`);
+			checkProp(stop, "code", `A stop in line ${lineCode} (${name}) does not have a code`);
 			const code = stop["code"];
-			check(code, "string", `A stop in line "${line}" has a code that is not a string`);
+			check(code, "string", `A stop in line ${lineCode} (${name}) has a code that is not a string`);
 			return prefix + code;
 		};
 		const addConnections = (from: Record<string, any>, to: Record<string, any>) => {
@@ -71,25 +78,25 @@ function parseDimension(dimension: any[], stations: Map<string, network.Station>
 			const coordsFrom: number[] = from["coords"];
 			const coordsTo: number[] = to["coords"];
 			if (time) {
-				check(time, "number", `The stop "${codeTo}" in line "${line}" has a time that is not a number`);
+				check(time, "number", `The stop "${codeTo}" in line ${lineCode} (${name}) has a time that is not a number`);
 				cost = time;
 			} else if (dist) {
-				check(dist, "number", `The stop "${codeTo}" in line "${line}" has a distance that is not a number`);
+				check(dist, "number", `The stop "${codeTo}" in line ${lineCode} (${name}) has a distance that is not a number`);
 				cost = dist * network.minecartSpeedFactor;
 			} else if (coordsFrom && coordsTo) {
-				checkArr(coordsFrom, `The stop "${codeFrom}" in line "${line}" has coordinates that are not an array`);
-				checkArr(coordsTo, `The stop "${codeTo}" in line "${line}" has coordinates that are not an array`);
+				checkArr(coordsFrom, `The stop "${codeFrom}" in line ${lineCode} (${name}) has coordinates that are not an array`);
+				checkArr(coordsTo, `The stop "${codeTo}" in line ${lineCode} (${name}) has coordinates that are not an array`);
 				const extractCoords = (coords: number[], code: string): [number, number] => {
 					if (coords.length === 3) {
-						check(coords[0], "number", `The stop "${code}" in line "${line}" has an x-coordinate that is not a number`);
-						check(coords[2], "number", `The stop "${code}" in line "${line}" has a z-coordinate that is not a number`);
+						check(coords[0], "number", `The stop "${code}" in line ${lineCode} (${name}) has an x-coordinate that is not a number`);
+						check(coords[2], "number", `The stop "${code}" in line ${lineCode} (${name}) has a z-coordinate that is not a number`);
 						return [coords[0] ?? 0, coords[2] ?? 0]; // ?? should never trigger because of the checks above
 					} else if (coords.length === 2) {
-						check(coords[0], "number", `The stop "${code}" in line "${line}" has an x-coordinate that is not a number`);
-						check(coords[1], "number", `The stop "${code}" in line "${line}" has a z-coordinate that is not a number`);
+						check(coords[0], "number", `The stop "${code}" in line ${lineCode} (${name}) has an x-coordinate that is not a number`);
+						check(coords[1], "number", `The stop "${code}" in line ${lineCode} (${name}) has a z-coordinate that is not a number`);
 						return [coords[0] ?? 0, coords[1] ?? 0]; // ?? should never trigger because of the checks above
 					} else {
-						throw Error(`The stop "${code}" in line "${line}" has coordinates that are not 2-dimensional or 3-dimensional`);
+						throw Error(`The stop "${code}" in line ${lineCode} (${name}) has coordinates that are not 2-dimensional or 3-dimensional`);
 					}
 				}
 				let [fromX, fromZ] = extractCoords(coordsFrom, codeFrom);
@@ -98,13 +105,13 @@ function parseDimension(dimension: any[], stations: Map<string, network.Station>
 				const dist = Math.abs(fromX - toX) + Math.abs(fromZ - toZ);
 				cost = dist * network.minecartSpeedFactor;
 			} else {
-				throw Error(`There is no way to determine the time it takes to travel from "${codeFrom}" to "${codeTo}" on line "${line}"`);
+				throw Error(`There is no way to determine the time it takes to travel from "${codeFrom}" to "${codeTo}" on line ${lineCode} (${name})`);
 			}
 
 			const addConnection = (from: string, to: string) => {
 				stations.get(from)?.connections.push({
 					code: to,
-					line: name,
+					line: lineCode,
 					cost
 				});
 			};
@@ -115,7 +122,7 @@ function parseDimension(dimension: any[], stations: Map<string, network.Station>
 		let firstStop = null;
 		let prevStop = null;
 		for (const stop of stops) {
-			check(stop, "object", `A stop in line "${stop}" is not an object`);
+			check(stop, "object", `A stop in line ${lineCode} (${name}) is not an object`);
 			if (firstStop === null) {
 				firstStop = stop;
 			}

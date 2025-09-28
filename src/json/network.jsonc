@@ -5,6 +5,7 @@
 	"lines": {
 		"overworld": [
 			{
+				"code": "AQ",
 				"name": "Aquatic Line",
 				"stops": [
 					// There is additional rail to what I think is the Wug Islands but that's not on the wiki or the map and doesn't have a code
@@ -87,6 +88,7 @@
 				]
 			},
 			{
+				"code": "GU-CE",
 				"name": "Central Gulf Line",
 				"local": true,
 				"brand": "Gulf",
@@ -134,6 +136,7 @@
 				]
 			},
 			{
+				"code": "CE",
 				"name": "Central Line",
 				"stops": [
 					{
@@ -263,6 +266,7 @@
 				]
 			},
 			{
+				"code": "KE-CH",
 				"name": "Cherry Line",
 				"local": true,
 				"stops": [
@@ -295,6 +299,7 @@
 				]
 			},
 			{
+				"code": "CO",
 				"name": "Coastal Line",
 				"stops": [
 					{
@@ -348,6 +353,7 @@
 				]
 			},
 			{
+				"code": "CR",
 				"name": "Corner Line",
 				"stops": [
 					// The line is not actually finished beyond NHN
@@ -458,6 +464,7 @@
 				]
 			},
 			{
+				"code": "CT",
 				"name": "Crystal Line",
 				"stops": [
 					{
@@ -482,6 +489,7 @@
 				]
 			},
 			{
+				"code": "CB",
 				"name": "Cuban Line",
 				"stops": [
 					{
@@ -548,6 +556,7 @@
 				]
 			},
 			{
+				"code": "FE-DL",
 				"name": "Density Loop",
 				"local": true,
 				"brand": "FERRA",
@@ -696,6 +705,7 @@
 				"loop": true
 			},
 			{
+				"code": "GU-EA",
 				"name": "Eastern Gulf Line",
 				"local": true,
 				"brand": "Gulf",
@@ -799,6 +809,7 @@
 				]
 			},
 			{
+				"code": "MZ-EG",
 				"name": "Egg Line",
 				"local": true,
 				"stops": [
@@ -824,6 +835,7 @@
 				]
 			},
 			{
+				"code": "CB-ES",
 				"name": "Everglacier Shuttle",
 				"local": true,
 				"stops": [
@@ -842,6 +854,7 @@
 				]
 			},
 			{
+				"code": "FE-???1",
 				"name": "FERRA Regional Line",
 				"local": true,
 				"brand": "FERRA",
@@ -868,6 +881,7 @@
 				]
 			},
 			{
+				"code": "FE-???2",
 				"name": "FERRA Regional Line",
 				"local": true,
 				"brand": "FERRA",
@@ -887,6 +901,7 @@
 				]
 			},
 			{
+				"code": "FO",
 				"name": "Forest Line",
 				"stops": [
 					// Kaōranga (AKK) is not actually accessible on this line; it just turns you around
@@ -996,6 +1011,7 @@
 				]
 			},
 			{
+				"code": "NU-HYD",
 				"name": "Hydra Line",
 				"local": true, // Not sure if this is actually local but it is labelled as such
 				"stops": [
@@ -1030,6 +1046,7 @@
 				]
 			},
 			{
+				"code": "??Klakkenbuutsh",
 				"name": "Klakkenbuutsh Line",
 				"stops": [
 					{
@@ -1076,6 +1093,7 @@
 				]
 			},
 			{
+				"code": "LA",
 				"name": "Lautseq Line",
 				"stops": [
 					{
@@ -1121,6 +1139,7 @@
 				]
 			},
 			{
+				"code": "??-???Uhaul",
 				"name": "Lesbian Uhaul Express Line",
 				"local": true,
 				"stops": [
@@ -1139,6 +1158,7 @@
 				]
 			},
 			{
+				"code": "CH",
 				"name": "Line of Chaos",
 				"stops": [
 					{
@@ -1185,6 +1205,7 @@
 				]
 			},
 			{
+				"code": "FE-??Mesa",
 				"name": "Mesa Loop", // Not a loop yet? (2025-09-20)
 				"local": true,
 				"brand": "FERRA",
@@ -1211,6 +1232,7 @@
 				]
 			},
 			{
+				"code": "MO",
 				"name": "Mountain Line",
 				"stops": [
 					{
@@ -1287,6 +1309,7 @@
 				"loop": true
 			},
 			{
+				"code": "NO",
 				"name": "Northern Line",
 				"stops": [
 					{
@@ -1389,6 +1412,8 @@
 				]
 			},
 			{
+				"code": "NA",
+				"alt_codes": ["ŊA"],
 				"name": "Ŋafrican Line",
 				"stops": [
 					// Line has been reset between OKN and SPG (2025-09-19)
@@ -1458,6 +1483,8 @@
 				]
 			},
 			{
+				"code": "NE",
+				"alt_codes": ["ŊE"],
 				"name": "Ŋerlin Line",
 				"stops": [
 					{
@@ -1503,6 +1530,7 @@
 				]
 			},
 			{
+				"code": "OL",
 				"name": "Olympic Line",
 				"stops": [
 					{
@@ -1638,6 +1666,7 @@
 				]
 			},
 			{
+				"code": "??-???Madness",
 				"name": "Rails of Madness",
 				"local": true,
 				"stops": [
@@ -1656,7 +1685,9 @@
 				]
 			},
 			{
+				"code": "DT-RO",
 				"name": "Rose Line",
+				"local": true,
 				"stops": [
 					{
 						"code": "DTB",
@@ -1673,6 +1704,7 @@
 				]
 			},
 			{
+				"code": "SL",
 				"name": "Slab Line",
 				"stops": [
 					{
@@ -1725,6 +1757,7 @@
 				]
 			},
 			{
+				"code": "SO",
 				"name": "Southern Line",
 				"alt_names": ["Southern Loop"],
 				"stops": [
@@ -1823,6 +1856,7 @@
 				"loop": true
 			},
 			{
+				"code": "FE-SL",
 				"name": "Sparsity Loop", // Despite the name, it has not been finished enough to actually loop yet
 				"local": true,
 				"brand": "FERRA",
@@ -1851,6 +1885,7 @@
 
 			},
 			{
+				"code": "TA",
 				"name": "Traeth Line",
 				"stops": [
 					{
@@ -1875,6 +1910,7 @@
 				]
 			},
 			{
+				"code": "TF",
 				"name": "Transfortunate Line",
 				"stops": [
 					{
@@ -1927,6 +1963,7 @@
 				]
 			},
 			{
+				"code": "TR",
 				"name": "Transversal Line",
 				"stops": [
 					{
@@ -2135,6 +2172,7 @@
 				]
 			},
 			{
+				"code": "CB-???Villager",
 				"name": "Villager Hub Shuttle", // No official name that I can find
 				"local": true,
 				"stops": [
@@ -2153,6 +2191,7 @@
 				]
 			},
 			{
+				"code": "WS-WE",
 				"name": "Wekañu Line",
 				"local": true,
 				"stops": [
@@ -2185,6 +2224,7 @@
 				]
 			},
 			{
+				"code": "GU-WE",
 				"name": "Western Gulf Line",
 				"local": true,
 				"brand": "Gulf",
@@ -2310,6 +2350,7 @@
 				]
 			},
 			{
+				"code": "WE",
 				"name": "Western Line",
 				"stops": [
 					{
@@ -2369,6 +2410,7 @@
 				]
 			},
 			{
+				"code": "ZY",
 				"name": "Zyrian Line",
 				"stops": [
 					{
@@ -2442,8 +2484,11 @@
 				]
 			}
 		],
-		"the_nether": [ // I have skipped the N- prefix and left it implied
+		"the_nether": [
+			// I have skipped the N- prefix for stations and left it implied
+			// Using unofficial codes for lines because I don't think they have ones yet
 			{
+				"code": "N-CR",
 				"name": "Crimson Line",
 				"stops": [
 					{
@@ -2468,6 +2513,7 @@
 				]
 			},
 			{
+				"code": "N-GO",
 				"name": "Gold Line",
 				"stops": [
 					{
@@ -2562,6 +2608,7 @@
 				]
 			},
 			{
+				"code": "N-MO",
 				"name": "Molten Line",
 				"stops": [
 					{
@@ -2624,6 +2671,7 @@
 				"loop": true
 			},
 			{
+				"code": "N-SO",
 				"name": "Soul Line",
 				"stops": [
 					{
@@ -2662,6 +2710,7 @@
 				]
 			},
 			{
+				"code": "N-SV-VN1",
 				"name": "Venrail N1",
 				"local": true,
 				"stops": [
@@ -2678,7 +2727,7 @@
 						"date": "2025-09-20T11:16:16.270060255Z"
 					},
 					{
-						"code": "SVB", // Maybe the code will be changed to N-SVB
+						"code": "SVB",
 						"coords": [-393, 127, 0],
 						"dist": 815,
 						"time": 9.9,
@@ -2687,6 +2736,7 @@
 				]
 			},
 			{
+				"code": "N-WA",
 				"name": "Warped Line",
 				"stops": [
 					{
@@ -2711,6 +2761,7 @@
 				]
 			},
 			{
+				"code": "N-WI",
 				"name": "Wither Line",
 				"stops": [
 					{

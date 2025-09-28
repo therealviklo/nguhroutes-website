@@ -1,21 +1,36 @@
+import * as network from './network.ts';
+import * as imp from './import.ts';
 import { getEl } from './utils.ts';
 
 let routes: Record<string, any> | null = null;
 let routesData: Record<string, any> = {};
+let net: network.Network | null = null;
+let loaded: Record<string, boolean> = { "routes": false, "net": false };
 
-function loadRoutes(path: string, name: string) {
+function setLoaded(id: string, val: boolean) {
+	loaded[id] = val;
 	const loading = getEl("loading");
 	const searcher = getEl("searcher");
-	if (!routesData[name]) {
+	if (val) {
+		if (Object.values(loaded).every(Boolean)) {
+			loading.hidden = true;
+			searcher.hidden = false;
+		}
+	} else {
 		loading.hidden = false;
 		searcher.hidden = true;
+	}
+}
+
+function loadRoutes(path: string, name: string) {
+	if (!routesData[name]) {
+		setLoaded("routes", false);
 		fetch(path)
 			.then(response => response.json())
 			.then(data => {
 				routesData[name] = data;
 				routes = routesData[name];
-				loading.hidden = true;
-				searcher.hidden = false;
+				setLoaded("routes", true);
 				findRoute();
 			})
 			.catch(error => {
@@ -26,6 +41,19 @@ function loadRoutes(path: string, name: string) {
 		routes = routesData[name];
 		findRoute();
 	}
+}
+
+function loadNetwork() {
+	fetch("./json/network.json")
+		.then(response => response.json())
+		.then(data => {
+			[net] = imp.parseNetwork(data, false);
+			setLoaded("net", true);
+		})
+		.catch(error => {
+			console.error('Error loading network JSON:', error);
+			getEl("loading-text").innerText = "An error occured while loading.";
+		});
 }
 
 export function setRoutes(noNether: boolean) {
@@ -66,7 +94,7 @@ export function findRoute() {
 		let code;
 		if (Array.isArray(stop)) {
 			code = stop[0];
-			line = stop[1];
+			line = net?.lines.get(stop[1]) ?? stop[1];
 		} else {
 			code = stop;
 		}
