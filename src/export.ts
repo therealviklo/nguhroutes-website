@@ -8,7 +8,7 @@ function generateRoutesJSON(routes: network.Routes, network_version: string): st
 	});
 	let obj = {
 		version: network_version,
-		format_version: "0.3",
+		format: "0.3",
 		date: new Date().toISOString(),
 		routes: objRoutes
 	};
