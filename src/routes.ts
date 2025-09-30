@@ -94,7 +94,7 @@ export function findRoute() {
 		let code;
 		if (Array.isArray(stop)) {
 			code = stop[0];
-			line = net?.lines.get(stop[1]) ?? stop[1];
+			line = (net?.lines.get(stop[1])?.name ?? stop[1]);
 		} else {
 			code = stop;
 		}
