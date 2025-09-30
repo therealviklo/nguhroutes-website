@@ -1,6 +1,6 @@
 {
 	"format": "1.0",
-	"version": "1.0",
+	"version": "1.1",
 	"date": "2025-09-30",
 	"lines": {
 		"overworld": [
@@ -2826,6 +2826,7 @@
 		"KCY",
 		["UNG", "KCY"],
 		"LRT",
-		"SXG"
+		"SXG",
+		"KER"
 	]
 }
