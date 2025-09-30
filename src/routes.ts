@@ -43,7 +43,7 @@ function loadRoutes(path: string, name: string) {
 	}
 }
 
-function loadNetwork() {
+export function loadNetwork() {
 	fetch("./json/network.json")
 		.then(response => response.json())
 		.then(data => {
