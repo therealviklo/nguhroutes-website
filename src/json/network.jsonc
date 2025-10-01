@@ -1,7 +1,7 @@
 {
 	// Only increase the second number of the format change is backwards-compatible
 	"format": "1.1",
-	"version": "2.0",
+	"version": "2.1",
 	"date": "2025-10-1",
 	"lines": {
 		"overworld": [
@@ -309,7 +309,7 @@
 						"date": "2025-09-19T21:11:53.546716867Z"
 					},
 					{
-						"code": "OBC", // TODO: remove?
+						"code": "XLC",
 						"coords": [-2109, 61, -570],
 						"dist": 1794,
 						"time": 18.1,
@@ -3113,6 +3113,7 @@
 		"XG2": "Guam 2",
 		"XKC": "Korzen's Castle",
 		"XKE": "Kêmaliye",
+		"XLC": "Las Cabanetas",
 		"XLV": "Lorvomde",
 		"XMB": "Marti's Base",
 		"XMH": "Marti's Home",
