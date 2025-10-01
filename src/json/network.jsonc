@@ -1,7 +1,8 @@
 {
-	"format": "1.0",
-	"version": "1.1",
-	"date": "2025-09-30",
+	// Only increase the second number of the format change is backwards-compatible
+	"format": "1.1",
+	"version": "2.0",
+	"date": "2025-10-1",
 	"lines": {
 		"overworld": [
 			{

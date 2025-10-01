@@ -17,7 +17,7 @@ export function parseNetwork(networkData: any, noNether: boolean): [network.Netw
 	const lines: Record<string, any> = baseObj["lines"];
 	check(lines, "object", "\"lines\" is not an object");
 	const overworld: any[] | undefined = lines["overworld"];
-	const stations = new Map();
+	const stations: Map<string, network.Station> = new Map();
 	const linesMap = new Map();
 	if (overworld) {
 		checkArr(overworld, "\"overworld\" is not an array");
@@ -35,6 +35,39 @@ export function parseNetwork(networkData: any, noNether: boolean): [network.Netw
 			addDimensionalConnections(connections, stations);
 		}
 	}
+
+	const stationsObj = baseObj["stations"];
+	if (stationsObj) {
+		check(stationsObj, "object", "\"stations\" is not an object");
+		for (const station in stationsObj) {
+			if (stations.has(station)) {
+				let names = stationsObj[station];
+				if (typeof(names) == "string") {
+					if (names.startsWith("$")) {
+						const referee = names.substring(1);
+						names = stationsObj[referee] ?? [referee];
+						if (typeof(names) == "string") {
+							names = [names];
+						}
+						if (!Array.isArray(names)) {
+							throw TypeError(`Station ${station} points to ${referee}, which does not have a valid name`);
+						}
+					} else {
+						names = [names]
+					}
+				}
+				if (Array.isArray(names)) {
+					for (const name of names) {
+						check(name, "string", `Station ${station} has a name that is not a string`);
+					}
+					stations.get(station)?.names.push(...names);
+				} else {
+					throw TypeError(`Station ${station} has an invalid name`);
+				}
+			}
+		}
+	}
+
 	return [{ stations, lines: linesMap }, version];
 }
 
@@ -145,7 +178,8 @@ function parseDimension(dimension: any[], stations: Map<string, network.Station>
 function addStation(stations: Map<string, network.Station>, code: string) {
 	if (!stations.has(code)){
 		stations.set(code, {
-			connections: []
+			connections: [],
+			names: []
 		});
 	}
 }

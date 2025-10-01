@@ -1,6 +1,7 @@
 import * as network from './network.ts';
 import * as imp from './import.ts';
 import { getEl } from './utils.ts';
+import { start } from 'repl';
 
 let routes: Record<string, any> | null = null;
 let routesData: Record<string, any> = {};
@@ -88,7 +89,8 @@ export function findRoute() {
 		return;
 	}
 	const [, stops] = route;
-	let routeStr = `${startStation} (Start)`;
+	let startName = net?.stations.get(startStation)?.names[0] ?? startStation;
+	let routeStr = `${startName} (${startStation}, Start)`;
 	let line = "Unknown line";
 	for (const stop of stops) {
 		let code;
@@ -98,8 +100,9 @@ export function findRoute() {
 		} else {
 			code = stop;
 		}
+		let name = net?.stations.get(code)?.names[0] ?? code;
 		routeStr += "<br>";
-		routeStr += `${code} (${line})`;
+		routeStr += `${name} (${code}, ${line})`;
 	}
 	output.innerHTML = routeStr;
 }

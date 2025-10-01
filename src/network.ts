@@ -17,7 +17,8 @@ export type Connection = {
  * Represents a station.
  */
 export type Station = {
-	connections: Connection[]
+	connections: Connection[];
+	names: String[];
 };
 
 export type Line = {
