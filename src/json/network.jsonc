@@ -1,8 +1,8 @@
 {
 	// Only increase the second number of the format change is backwards-compatible
 	"format": "1.1",
-	"version": "2.1",
-	"date": "2025-10-1",
+	"version": "2.2",
+	"date": "2025-10-2",
 	"lines": {
 		"overworld": [
 			{
@@ -2939,7 +2939,7 @@
 		"KCX": "Xêgwar",
 		"KCZ": "Barzewmari",
 		"KEN": "Northern Plains",
-		"KER": "Raln",
+		"KER": "Raln Cfbs.",
 		"N-KER": "$KER",
 		"KET": "Tarpoenstad",
 		"KI1": "1199gwa",
